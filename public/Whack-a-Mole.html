@@ -3,15 +3,34 @@
 	<title>Whack-A-Mole</title>
 	<link rel="stylesheet" type="text/css" href="/css/Whack-a-Mole.css">	
 	<script src="/js/jquery-1.11.3.js"></script>
+	<script src="/js/jquery-ui.js"></script>
 	<script src="/js/Whack-a-Mole.js"></script>
+
 </head>
 <body>
-	<h1>Whack-A-Mole</h1>
+	<h1>Whack-A-Bell</h1>
 	<aside>
-		<button id="start" align="center">START</button>
-		<input type='text' id="score" value="0"></input>
-		<p align="center">Difficulty Selector</p>
-		<label>Ludicrous  </lable><input id="slider" name="difficulty" type="range" step="1" min="0" max="10"><label>  Paint Drying</label>
+		<div>
+			<button id="start" align="center">START</button>
+		</div>
+		
+		<div id="score_title" align='center'>Score
+			<input type='text' id="score" value="0"></input>
+		</div>
+		
+		<div id="difficulty_selector" align="center">Difficulty Selector</div>
+			<label>Ludicrous  </lable>
+				<input id="slider" align="center" name="difficulty" type="range" step="1" min="0" max="10">
+			<label>  Paint Drying</label>
+		
+		<div align="center" id="highscore_title">High Score
+			<input type='text' id='highscore' align='center' placeholder='Under Construction'>
+		</div>
+
+		<!-- audio files below -->
+		<audio id="correct" src="/img/correct_bell.wav"></audio>
+		<audio id="wrong" src="/img/wrong_bell.wav"></audio>
+		<audio id="game_over" src="/img/game_over.wav"></audio>
 	</aside>
 
 	<div id="console">

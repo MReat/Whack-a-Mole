@@ -3,6 +3,7 @@ $(document).ready(function () {
 	var playerScore = 0;
 	var sliderValue = $('#slider').val();
 	var timer;
+	var highScore = []
 
 // Box Animation
 	function animateBox (id) { // 2 options for blinking
@@ -18,7 +19,6 @@ $(document).ready(function () {
 	$('#start').click(function () {
 		playerScore = 0;
 		playGameSequence();
-		$('#score').val(playerScore);
 	});	
 	
 	// Random Box Choice
@@ -30,8 +30,9 @@ $(document).ready(function () {
 		setTimeout(function () {
 			animateBox(id);
 			startTimeoutTimer();
-		}, (sliderValue * 200));
+			}, (sliderValue * 200));		
 	};
+
 	
 	// Box Sequencing Script
 	function nextRound () {
@@ -39,6 +40,11 @@ $(document).ready(function () {
 		$('#score').val(playerScore);
 	};
 
+	// play sounds
+	function playSound (sound) {
+		document.getElementById(sound).play()
+	}
+	
 	// start timer
 	function startTimeoutTimer () {
 		timer = setTimeout(function () {
@@ -53,6 +59,7 @@ $(document).ready(function () {
 	
 	// game over
 	function gameOver () {
+		playSound('game_over');
 		alert("Game Over!");
 	};
 
@@ -61,10 +68,14 @@ $(document).ready(function () {
 		if ($(this).hasClass('active')) {
 			playerScore += 5;
 			$(this).removeClass('active');
+			$(this).effect('shake', 800);
+			playSound('correct');
 			stopTimeoutTimer();
 			nextRound();
-		} else if ($(this).not('active') && playerScore >= 0) {
+		} else if ($(this).not('active') && playerScore > 0) {
 			playerScore -= 1;
+			$(this).effect('bounce', 800);
+			playSound('wrong');
 			stopTimeoutTimer();
 			nextRound();
 		} else {
